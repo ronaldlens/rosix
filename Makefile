@@ -21,4 +21,7 @@ os-image.bin: boot/boot32.bin boot/kernel.bin
 	cat $^ > $@
 
 run: os-image.bin
-	$(QEMU) -fda $<
+	$(QEMU) -drive format=raw,file=$<,index=0,if=floppy
+
+clean:
+	rm -f *.bin boot/*.bin boot/*.o
